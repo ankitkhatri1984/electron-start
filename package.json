@@ -4,9 +4,14 @@
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-builder build  --win --publish never",
+"deploy": "electron-builder build  --win --publish always"
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository":{
+    "type" : "git",
+    "url" : "https://github.com/ankitkhatri1984/electron-start.git"
+  },
   "keywords": [
     "Electron",
     "quick",
@@ -17,9 +22,13 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^7.1.3"
+    "electron": "^7.1.3",
+    "electron-builder": "^21.2.0"
   },
   "dependencies": {
-    "update-electron-app": "^1.5.0"
+    "electron-updater": "^4.2.0",
+    "os": "^0.1.1",
+    "update-electron-app": "^1.5.0",
+    "username": "^5.1.0"
   }
 }
