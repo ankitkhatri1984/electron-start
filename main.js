@@ -38,11 +38,18 @@ ipcMain.on('app_version', (event) => {
 });
 
 autoUpdater.on('update-available', () => {
+  console.log("updates available");
   mainWindow.webContents.send('update_available');
 });
 autoUpdater.on('update-downloaded', () => {
+  console.log("updates downloaded");
   mainWindow.webContents.send('update_downloaded');
 });
+
+autoUpdater.on('update-not-available', (info) => {
+  console.log("updates not available");
+  sendStatusToWindow('Update not available.');
+})
 
 ipcMain.on('restart_app', () => {
   autoUpdater.quitAndInstall();
