@@ -1,16 +1,16 @@
 {
   "name": "electron-quick-start",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "build": "electron-builder build  --win --publish never",
-"deploy": "electron-builder build  --win --publish always"
+    "deploy": "electron-builder build  --win --publish always"
   },
-  "repository":{
-    "type" : "git",
-    "url" : "https://github.com/ankitkhatri1984/electron-start.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ankitkhatri1984/electron-start.git"
   },
   "keywords": [
     "Electron",
@@ -26,8 +26,6 @@
     "electron-builder": "^21.2.0"
   },
   "dependencies": {
-    "electron-updater": "^4.2.0",
-    "os": "^0.1.1",
-    "username": "^5.1.0"
+    "electron-updater": "^4.0.6"
   }
 }
