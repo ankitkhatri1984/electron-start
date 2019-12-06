@@ -19,6 +19,7 @@ function createWindow () {
 
 app.on('ready', () => {
   createWindow();
+  console.log("create window executed and running for  checking for update")
   autoUpdater.checkForUpdatesAndNotify();
 });
 
