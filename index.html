@@ -68,6 +68,13 @@
       restartButton.classList.remove('hidden');
       notification.classList.remove('hidden');
     });
+    ipcRenderer.on('error', () => {
+      console.log("error");
+    });
+    ipcRenderer.on('checking_for_update', () => {
+     console.log("checking for updates")
+    });
+
     function closeNotification() {
       notification.classList.add('hidden');
     }

@@ -50,6 +50,15 @@ autoUpdater.on('update-not-available', () => {
   console.log("updates are not available.");
   mainWindow.webContents.send('update_not_available');
 });
+autoUpdater.on('error', () => {
+  console.log("error");
+  mainWindow.webContents.send('error');
+});
+
+autoUpdater.on('checking-for-update', () => {
+  console.log("checking-for-update");
+  mainWindow.webContents.send('checking_for_update');
+});
 ipcMain.on('restart_app', () => {
   autoUpdater.quitAndInstall();
 });
