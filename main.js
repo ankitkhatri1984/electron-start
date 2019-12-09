@@ -19,7 +19,7 @@ function createWindow () {
 
 app.on('ready', () => {
   createWindow();
-  console.log("create window executed and running for  checking for update")
+  console.log("create window executed and running for  checking for update");
   autoUpdater.checkForUpdatesAndNotify();
 });
 
@@ -46,7 +46,10 @@ autoUpdater.on('update-available', () => {
 autoUpdater.on('update-downloaded', () => {
   mainWindow.webContents.send('update_downloaded');
 });
-
+autoUpdater.on('update-not-available', () => {
+  console.log("updates are not available.");
+  mainWindow.webContents.send('update_not_available');
+});
 ipcMain.on('restart_app', () => {
   autoUpdater.quitAndInstall();
 });
