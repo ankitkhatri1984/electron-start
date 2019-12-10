@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const { autoUpdater } = require('electron-updater');
-
+const fs = require("fs");
+const https = require('https');
 let mainWindow;
 
 function createWindow () {
@@ -17,10 +18,47 @@ function createWindow () {
   });
 }
 
+function checkifAutoEnableAndAutoUpdate(){
+   getPreferenceAndAutoUpdate();
+  
+}
+
+function getPreferenceAndAutoUpdate(){
+  let jsondata = {};
+  https.get('https://testapi.io/api/ankitkhatri1984/autoUpdate', (resp) => {
+  let data = '';
+
+  // A chunk of data has been recieved.
+  resp.on('data', (chunk) => {
+    data += chunk;
+  });
+
+  // The whole response has been received. Print out the result.
+  resp.on('end', () => {
+    console.log(JSON.parse(data).explanation);
+    jsondata = JSON.parse(data);
+    if(jsondata.autoUpdate){
+      autoUpdater.checkForUpdatesAndNotify();
+    }
+    
+  });
+
+}).on("error", (err) => {
+  console.log("Error: " + err.message);
+});
+
+}
+
 app.on('ready', () => {
   createWindow();
   console.log("create window executed and running for  checking for update");
-  autoUpdater.checkForUpdatesAndNotify();
+  setInterval(() => {
+    checkifAutoEnableAndAutoUpdate();
+      
+    
+    
+  }, 60000);
+  
 });
 
 app.on('window-all-closed', function () {
@@ -36,7 +74,7 @@ app.on('activate', function () {
 });
 
 ipcMain.on('app_version', (event) => {
-  event.sender.send('app_version', { version: app.getVersion() });
+  event.sender.send('app_version', { version: app.getVersion()});
 });
 
 autoUpdater.on('update-available', () => {
@@ -62,3 +100,4 @@ autoUpdater.on('checking-for-update', () => {
 ipcMain.on('restart_app', () => {
   autoUpdater.quitAndInstall();
 });
+

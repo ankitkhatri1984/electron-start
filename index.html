@@ -20,6 +20,7 @@
       background-color: white;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     }
+   
     .hidden {
       display: none;
     }
@@ -28,6 +29,7 @@
 <body>
   <h1>Electron Auto Update Example</h1>
   <p id="version"></p>
+  
   <div id="notification" class="hidden">
     <p id="message"></p>
     <button id="close-button" onClick="closeNotification()">
@@ -41,6 +43,7 @@
     const { ipcRenderer } = require('electron');
     const version = document.getElementById('version');
     const notification = document.getElementById('notification');
+    const autoUpdate = document.getElementById('update-button');
     const message = document.getElementById('message');
     const restartButton = document.getElementById('restart-button');
     
@@ -48,6 +51,7 @@
     ipcRenderer.on('app_version', (event, arg) => {
       ipcRenderer.removeAllListeners('app_version');
       version.innerText = 'Version ' + arg.version;
+     
     });
 
     ipcRenderer.on('update_available', () => {
@@ -75,6 +79,7 @@
      console.log("checking for updates")
     });
 
+    
     function closeNotification() {
       notification.classList.add('hidden');
     }
