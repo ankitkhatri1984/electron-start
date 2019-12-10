@@ -38,7 +38,10 @@ function getPreferenceAndAutoUpdate(){
     console.log(JSON.parse(data).explanation);
     jsondata = JSON.parse(data);
     if(jsondata.autoUpdate){
+      console.log("checking for updates and notify");
       autoUpdater.checkForUpdatesAndNotify();
+    } else {
+      console.log("autoupdate set to false");
     }
     
   });
