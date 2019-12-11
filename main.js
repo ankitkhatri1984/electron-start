@@ -2,6 +2,8 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const { autoUpdater } = require('electron-updater');
 const fs = require("fs");
 const https = require('https');
+var schedule = require('node-schedule');
+
 let mainWindow;
 
 function createWindow () {
@@ -55,12 +57,16 @@ function getPreferenceAndAutoUpdate(){
 app.on('ready', () => {
   createWindow();
   console.log("create window executed and running for  checking for update");
-  setInterval(() => {
+  var event = schedule.scheduleJob("*/1 * * * *", function() {
+    console.log('This runs every 5 minutes');
+    checkifAutoEnableAndAutoUpdate();
+});
+ /* setInterval(() => {
     checkifAutoEnableAndAutoUpdate();
       
     
     
-  }, 60000);
+  }, 60000);*/
   
 });
 
