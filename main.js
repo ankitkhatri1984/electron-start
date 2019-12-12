@@ -72,6 +72,10 @@ app.on('window-all-closed', function () {
   }
 });
 
+app.on('before-quit', function () {
+    autoUpdater.quitAndInstall(true,false);
+});
+
 app.on('activate', function () {
   if (mainWindow === null) {
     createWindow();

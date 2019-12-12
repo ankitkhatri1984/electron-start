@@ -1,6 +1,6 @@
 {
   "name": "electron-quick-start",
-  "version": "7.0.8",
+  "version": "8.0.0",
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
