@@ -42,7 +42,7 @@ function getPreferenceAndAutoUpdate(){
     if(jsondata.autoUpdate){
       console.log("checking for updates and notify");
       autoUpdater.checkForUpdatesAndNotify();
-      autoUpdater.autoInstallOnAppQuit(true);
+      autoUpdater.autoInstallOnAppQuit = true;
       
     } else {
       console.log("autoupdate set to false");
