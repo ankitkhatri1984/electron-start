@@ -67,6 +67,7 @@ app.on('ready', () => {
 
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') {
+    autoUpdater.quitAndInstall(true,false);
     app.quit();
   }
 });
@@ -101,8 +102,6 @@ autoUpdater.on('checking-for-update', () => {
   console.log("checking-for-update");
   mainWindow.webContents.send('checking_for_update');
 });
-ipcMain.on('restart_app', () => {
- //
-});
+
 
 
