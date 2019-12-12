@@ -73,7 +73,8 @@ app.on('window-all-closed', function () {
 });
 
 app.on('before-quit', function () {
-    autoUpdater.quitAndInstall(true,false);
+    autoUpdater.quitAndInstall(true);
+    autoUpdater.install
 });
 
 app.on('activate', function () {
