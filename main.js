@@ -61,13 +61,6 @@ app.on('ready', () => {
     console.log('This runs every 5 minutes');
     checkifAutoEnableAndAutoUpdate();
 });
- /* setInterval(() => {
-    checkifAutoEnableAndAutoUpdate();
-      
-    
-    
-  }, 60000);*/
-  
 });
 
 app.on('window-all-closed', function () {
