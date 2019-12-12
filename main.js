@@ -5,7 +5,8 @@ const https = require('https');
 var schedule = require('node-schedule');
 
 let mainWindow;
-
+autoUpdater.autoInstallOnAppQuit = true;
+autoUpdater
 function createWindow () {
   mainWindow = new BrowserWindow({
     width: 800,
@@ -42,8 +43,6 @@ function getPreferenceAndAutoUpdate(){
     if(jsondata.autoUpdate){
       console.log("checking for updates and notify");
       autoUpdater.checkForUpdatesAndNotify();
-      autoUpdater.autoInstallOnAppQuit = true;
-      
     } else {
       console.log("autoupdate set to false");
     }
@@ -67,15 +66,15 @@ app.on('ready', () => {
 
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') {
-    autoUpdater.quitAndInstall(true,false);
+  
     app.quit();
   }
 });
 
-app.on('before-quit', function () {
+/*app.on('before-quit', function () {
     autoUpdater.quitAndInstall(true);
     autoUpdater.install
-});
+});*/
 
 app.on('activate', function () {
   if (mainWindow === null) {
