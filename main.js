@@ -65,10 +65,9 @@ app.on('ready', () => {
 });
 
 app.on('window-all-closed', function () {
-  if (process.platform !== 'darwin') {
-  
+  autoUpdater.quitAndInstall(true);
     app.quit();
-  }
+  
 });
 
 /*app.on('before-quit', function () {
