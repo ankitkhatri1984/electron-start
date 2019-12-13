@@ -6,7 +6,7 @@ var schedule = require('node-schedule');
 
 let mainWindow;
 autoUpdater.autoInstallOnAppQuit = true;
-autoUpdater
+
 function createWindow () {
   mainWindow = new BrowserWindow({
     width: 800,
