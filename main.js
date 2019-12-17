@@ -5,7 +5,6 @@ const https = require('https');
 var schedule = require('node-schedule');
 
 let mainWindow;
-autoUpdater.autoInstallOnAppQuit = true;
 
 function createWindow () {
   mainWindow = new BrowserWindow({
@@ -19,9 +18,6 @@ function createWindow () {
   mainWindow.on('closed', function () {
     mainWindow = null;
   });
-
-  console.log(autoUpdater.channel);
-  console.log(app.channel);
 }
 
 function checkifAutoEnableAndAutoUpdate(){
@@ -45,7 +41,7 @@ function getPreferenceAndAutoUpdate(){
     jsondata = JSON.parse(data);
     if(jsondata.autoUpdate){
       console.log("checking for updates and notify");
-      autoUpdater.channel = jsondata.channel;
+     // autoUpdater.channel = jsondata.channel;
       autoUpdater.checkForUpdatesAndNotify();
     } else {
       console.log("autoupdate set to false");
@@ -66,18 +62,20 @@ app.on('ready', () => {
     console.log('This runs every 5 minutes');
     checkifAutoEnableAndAutoUpdate();
 });
-});
-
-app.on('window-all-closed', function () {
-  autoUpdater.quitAndInstall(true);
-    app.quit();
+ /* setInterval(() => {
+    checkifAutoEnableAndAutoUpdate();
+      
+    
+    
+  }, 60000);*/
   
 });
 
-/*app.on('before-quit', function () {
-    autoUpdater.quitAndInstall(true);
-    autoUpdater.install
-});*/
+app.on('window-all-closed', function () {
+  if (process.platform !== 'darwin') {
+    app.quit();
+  }
+});
 
 app.on('activate', function () {
   if (mainWindow === null) {
@@ -109,6 +107,7 @@ autoUpdater.on('checking-for-update', () => {
   console.log("checking-for-update");
   mainWindow.webContents.send('checking_for_update');
 });
-
-
+ipcMain.on('restart_app', () => {
+  autoUpdater.quitAndInstall();
+});
 
