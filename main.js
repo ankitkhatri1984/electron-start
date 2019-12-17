@@ -19,6 +19,9 @@ function createWindow () {
   mainWindow.on('closed', function () {
     mainWindow = null;
   });
+
+  console.log(autoUpdater.channel);
+  console.log(app.channel);
 }
 
 function checkifAutoEnableAndAutoUpdate(){
