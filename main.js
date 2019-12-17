@@ -99,9 +99,9 @@ autoUpdater.on('update-not-available', () => {
   console.log("updates are not available.");
   mainWindow.webContents.send('update_not_available');
 });
-autoUpdater.on('error', () => {
+autoUpdater.on('error', (error) => {
   console.log("error");
-  mainWindow.webContents.send('error');
+  mainWindow.webContents.send('error', {"error":error});
 });
 
 autoUpdater.on('checking-for-update', () => {

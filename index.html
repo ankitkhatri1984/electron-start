@@ -72,7 +72,7 @@
       restartButton.classList.remove('hidden');
       notification.classList.remove('hidden');
     });
-    ipcRenderer.on('error', () => {
+    ipcRenderer.on('error', (event, arg) => {
       console.log("error");
     });
     ipcRenderer.on('checking_for_update', () => {
