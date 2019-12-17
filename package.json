@@ -1,6 +1,6 @@
 {
   "name": "electron-quick-start",
-  "version": "20.0.0",
+  "version": "20.0.1-beta",
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
